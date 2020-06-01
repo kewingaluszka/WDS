@@ -1,11 +1,12 @@
 #include "settings.h"
 #include "ui_settings.h"
+#include "usart.h"
 #include <QDebug>
 #include <algorithm>
 #include <alg.h>
 #include <stdio.h>
 #include <cctype>
-#include "usart.h"
+
 
 
 Settings::Settings(QWidget *parent) :
@@ -75,9 +76,10 @@ void Settings::slt_addToLogs(QString message)
 void Settings::on_b_disconnect_clicked()
 {
     emit sig_usart_disconnect();
-
 }
 
 
-
-
+void Settings::on_b_close_clicked()
+{
+    this->close();
+}

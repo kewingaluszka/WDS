@@ -1,13 +1,15 @@
 #include"virus.h"
+#include "player.h"
 #include <QTimer>
-#include<QGraphicsScene>
+#include <QGraphicsScene>
 #include <QDebug>
 #include <stdlib.h>
 #include <QGraphicsPixmapItem>
 
+
 virus::virus(): QObject(), QGraphicsPixmapItem()
 {
-    int random_pos = rand() %700;
+    int random_pos = rand() %500;
     setPos(random_pos,0);
 
     setPixmap(QPixmap(":/img/virus.png"));
@@ -21,9 +23,10 @@ virus::virus(): QObject(), QGraphicsPixmapItem()
 
 void virus::move(){
     setPos(x(), y()+10);
-    if(pos().y() < -45){                    //position -50 due height of syringe
+    if(pos().y() > 400){                    //position -50 due height of syringe
+        emit sig_life();
         scene() -> removeItem(this);
-       delete this;
+        delete this;
         qDebug() << "enemy deleted!";
     }
 }

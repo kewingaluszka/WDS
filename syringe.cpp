@@ -1,13 +1,14 @@
 #include"syringe.h"
+#include "virus.h"
 #include <QTimer>
-#include<QGraphicsScene>
+#include <QGraphicsScene>
 #include <QDebug>
 #include <QList>
-#include "virus.h"
+
 syringe::syringe(): QObject(), QGraphicsPixmapItem()
 
 {
-   setPixmap(QPixmap(":/img/syringe.png"));
+    setPixmap(QPixmap(":/img/syringe.png"));
 
     QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -40,7 +41,7 @@ void syringe::move(){
     setPos(x(), y()-10);
     if(pos().y() < -45){                    //position -50 due height of syringe
         scene() -> removeItem(this);
-       delete this;
+        delete this;
         qDebug() << "Syringe deleted!";
     }
 }
